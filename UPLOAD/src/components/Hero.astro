@@ -1,0 +1,161 @@
+---
+interface Props {
+  headline: string;
+  subheadline: string;
+  tagline: string;
+  image: string;
+  formula?: string;
+}
+
+const { headline, subheadline, tagline, image, formula = "C₁₀H₁₈O — linalool" } = Astro.props;
+---
+
+<header class="hero">
+  <div class="hero-container">
+    <div class="hero-content fade-up">
+      <span class="section-label">Sibila · Mallorca</span>
+      <h1 class="hero-title serif">
+        {headline} <br />
+        <em>{subheadline}</em>
+      </h1>
+      <p class="hero-tagline">{tagline}</p>
+      
+      <div class="hero-actions">
+        <a href="#worlds" class="btn-primary">Descubrir los mundos</a>
+        <a href="#contact" class="btn-outline">Hablemos</a>
+      </div>
+    </div>
+    
+    <div class="hero-visual fade-up">
+      <div class="image-wrapper">
+        <img src={image} alt="Essence Visual" />
+        <div class="formula-overlay serif">{formula}</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: var(--nav-h);
+    overflow: hidden;
+    position: relative;
+    background: var(--color-bg);
+  }
+
+  .hero-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+  }
+
+  .hero-title em {
+    color: var(--color-accent);
+    font-style: italic;
+  }
+
+  .hero-tagline {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    max-width: 480px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .btn-primary {
+    background: var(--color-text);
+    color: var(--color-bg);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    border: 1px solid var(--color-text);
+    color: var(--color-text);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+  }
+
+  .btn-outline:hover {
+    background: var(--color-text);
+    color: var(--color-bg);
+  }
+
+  .hero-visual {
+    position: relative;
+  }
+
+  .image-wrapper {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+  }
+
+  .image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .formula-overlay {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    writing-mode: vertical-rl;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+  }
+
+  @media (max-width: 968px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      padding: 0 2rem;
+      text-align: center;
+    }
+    .hero-content {
+      order: 2;
+    }
+    .hero-visual {
+      order: 1;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .hero-tagline {
+      margin: 0 auto 3rem;
+    }
+    .hero-actions {
+      justify-content: center;
+    }
+  }
+</style>
