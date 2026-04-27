@@ -123,6 +123,7 @@ footer { background:var(--dark);padding:72px 80px 40px; }
 
 /* ---- RESPONSIVE ---- */
 @media(max-width:768px){
+  html { font-size: 18px; }
   nav { padding:0 20px; }
   .nav-links { display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:var(--warm-white);flex-direction:column;padding:24px 20px 32px;gap:0;border-bottom:1px solid rgba(200,134,42,.1); }
   .nav-links.open { display:flex; }

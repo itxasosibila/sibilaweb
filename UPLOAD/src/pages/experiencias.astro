@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Experiencias Olfativas — Sibila">
+<div class="page-hero sub-hero-img fade-up">
+  <div class="page-hero-eyebrow">Sibila · Mundo 01</div>
+  <h1><span data-lang="es">Un viaje que no<br>se ve, pero<br><em>se recuerda.</em></span><span data-lang="en" style="display:none">A journey you cannot<br>see, but<br><em>remember forever.</em></span></h1>
+  <p class="page-hero-sub" data-lang="es">Experiencias olfativas que despiertan emociones y conectan con la memoria. Para eventos, bodegas, retiros y todo lo que quiera dejar huella.</p>
+  <p class="page-hero-sub" data-lang="en" style="display:none">Olfactory experiences that awaken emotions and connect with memory. For events, wineries, retreats and everything that wants to leave a mark.</p>
+</div>
+
+<section class="process">
+  <div class="section-label fade-up" data-es="El proceso" data-en="The process">El proceso</div>
+  <div class="process-grid">
+    <div class="process-step fade-up" data-n="01">
+      <div class="step-title" data-lang="es">Escuchar</div>
+      <div class="step-title" data-lang="en" style="display:none">Listen</div>
+      <p class="step-text" data-lang="es">Comprendemos la esencia de tu evento, los valores que quieres transmitir y las emociones que buscas despertar.</p>
+      <p class="step-text" data-lang="en" style="display:none">We understand the essence of your event, the values you want to convey, and the emotions you want to awaken.</p>
+    </div>
+    <div class="process-step fade-up" data-n="02">
+      <div class="step-title" data-lang="es">Crear</div>
+      <div class="step-title" data-lang="en" style="display:none">Create</div>
+      <p class="step-text" data-lang="es">Desarrollamos una composición olfativa única que dialoga con tu propuesta, amplificando su significado.</p>
+      <p class="step-text" data-lang="en" style="display:none">We develop a unique olfactory composition that speaks to your proposal, amplifying its meaning.</p>
+    </div>
+    <div class="process-step fade-up" data-n="03">
+      <div class="step-title" data-lang="es">Experimentar</div>
+      <div class="step-title" data-lang="en" style="display:none">Experience</div>
+      <p class="step-text" data-lang="es">Implementamos la experiencia sensorial completa, guiando a los participantes en un viaje memorable y transformador.</p>
+      <p class="step-text" data-lang="en" style="display:none">We implement the full sensory experience, guiding participants on a memorable and transformative journey.</p>
+    </div>
+  </div>
+</section>
+
+<section class="examples">
+  <div class="section-label light fade-up" data-es="Ejemplos" data-en="Examples">Ejemplos</div>
+  <div class="examples-grid">
+    <div class="example-card fade-up">
+      <div class="example-title" data-lang="es">Bodega en Mallorca</div>
+      <div class="example-title" data-lang="en" style="display:none">Winery in Mallorca</div>
+      <p class="example-text" data-lang="es">Cata olfativa que conecta las notas del vino con aromas de la tierra mediterránea: romero silvestre, higos maduros, sal marina y madera de encina.</p>
+      <p class="example-text" data-lang="en" style="display:none">Olfactory tasting connecting wine notes with Mediterranean scents: wild rosemary, ripe figs, sea salt and oak wood.</p>
+    </div>
+    <div class="example-card fade-up">
+      <div class="example-title" data-lang="es">Retiro de yoga</div>
+      <div class="example-title" data-lang="en" style="display:none">Yoga retreat</div>
+      <p class="example-text" data-lang="es">Secuencias aromáticas que acompañan cada momento del día: energizante al amanecer, contemplativa al mediodía, restauradora al atardecer.</p>
+      <p class="example-text" data-lang="en" style="display:none">Aromatic sequences accompanying each moment of the day: energizing at dawn, contemplative at noon, restorative at sunset.</p>
+    </div>
+    <div class="example-card fade-up">
+      <div class="example-title" data-lang="es">Team building sensorial</div>
+      <div class="example-title" data-lang="en" style="display:none">Sensory team building</div>
+      <p class="example-text" data-lang="es">Equipos corporativos descubren nuevas formas de comunicación y creatividad a través del lenguaje olfativo.</p>
+      <p class="example-text" data-lang="en" style="display:none">Corporate teams discover new forms of communication and creativity through olfactory language.</p>
+    </div>
+  </div>
+</section>
+
+<div class="sub-cta fade-up">
+  <h2><span data-lang="es">¿Tienes un evento en mente?<br><em>Cuéntame.</em></span><span data-lang="en" style="display:none">Have an event in mind?<br><em>Tell me.</em></span></h2>
+  <p data-lang="es">Todo empieza con una conversación. Cuéntame tu proyecto y lo traducimos en aroma.</p>
+  <p data-lang="en" style="display:none">Everything starts with a conversation. Tell me your project and we translate it into scent.</p>
+  <div class="sub-cta-btns">
+    <a href="/#contact" class="btn-primary"><span data-es="Diseña tu experiencia" data-en="Design your experience">Diseña tu experiencia</span></a>
+    <a href="https://wa.me/34608543705" class="btn-ghost" target="_blank" data-es="💬 WhatsApp" data-en="💬 WhatsApp">💬 WhatsApp</a>
+  </div>
+</div>
+</Layout>
+
+<style>
+.sub-hero-img{background-image:url('/images/botanica-amber.png');}
+.process{padding:90px 80px;background:var(--cream);}
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:48px;}
+.process-step{padding:44px 36px;background:var(--warm-white);position:relative;}
+.process-step::before{content:attr(data-n);font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;color:rgba(200,134,42,.08);position:absolute;top:20px;right:24px;line-height:1;}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;color:var(--dark);margin-bottom:12px;}
+.step-text{font-size:.84rem;font-weight:300;line-height:1.9;color:var(--text-muted);}
+.examples{padding:90px 80px;background:var(--dark);}
+.examples-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px;}
+.example-card{padding:36px 32px;border:1px solid rgba(255,255,255,.06);transition:border-color .3s;}
+.example-card:hover{border-color:rgba(200,134,42,.25);}
+.example-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic;color:var(--cream);margin-bottom:12px;}
+.example-text{font-size:.82rem;font-weight:300;line-height:1.9;color:rgba(245,240,232,.45);}
+.sub-cta{padding:90px 80px;background:var(--cream);text-align:center;}
+.sub-cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3.5rem);font-weight:300;color:var(--dark);margin-bottom:20px;}
+.sub-cta h2 em{font-style:italic;color:var(--amber);}
+.sub-cta p{font-size:.9rem;font-weight:300;color:var(--text-muted);line-height:1.9;max-width:500px;margin:0 auto 36px;}
+.sub-cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+@media(max-width:768px){
+  .process,.examples,.sub-cta{padding:60px 20px;}
+  .process-grid,.examples-grid{grid-template-columns:1fr;}
+}
+</style>
