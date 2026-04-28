@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getNotionContent } from '../lib/notion.js';
+
+const lang = Astro.currentLocale || 'es';
+const t: any = await getNotionContent(lang);
+
+// Link prefix logic for multi-language SSG
+const prefix = lang === 'es' ? '' : `/${lang}`;
+---
+
+<Layout title={t.exp_meta_title || "Experiencias Olfativas — Sibila"}>
+<div class="page-hero sub-hero-img fade-up">
+  <div class="page-hero-eyebrow" set:html={t.exp_hero_eyebrow || "Sibila · Mundo 01"}></div>
+  <h1 set:html={t.exp_hero_headline || "Un viaje que no<br>se ve, pero<br><em>se recuerda.</em>"}></h1>
+  <p class="page-hero-sub" set:html={t.exp_hero_sub || "Experiencias olfativas que despiertan emociones y conectan con la memoria. Para eventos, bodegas, retiros y todo lo que quiera dejar huella."}></p>
+</div>
+
+<section class="process">
+  <div class="section-label fade-up" set:html={t.exp_process_label || "El proceso"}></div>
+  <div class="process-grid">
+    <div class="process-step fade-up" data-n="01">
+      <div class="step-title" set:html={t.exp_process_1_title || "Escuchar"}></div>
+      <p class="step-text" set:html={t.exp_process_1_text || "Comprendemos la esencia de tu evento, los valores que quieres transmitir y las emociones que buscas despertar."}></p>
+    </div>
+    <div class="process-step fade-up" data-n="02">
+      <div class="step-title" set:html={t.exp_process_2_title || "Crear"}></div>
+      <p class="step-text" set:html={t.exp_process_2_text || "Desarrollamos una composición olfativa única que dialoga con tu propuesta, amplificando su significado."}></p>
+    </div>
+    <div class="process-step fade-up" data-n="03">
+      <div class="step-title" set:html={t.exp_process_3_title || "Experimentar"}></div>
+      <p class="step-text" set:html={t.exp_process_3_text || "Implementamos la experiencia sensorial completa, guiando a los participantes en un viaje memorable y transformador."}></p>
+    </div>
+  </div>
+</section>
+
+<section class="examples">
+  <div class="section-label light fade-up" set:html={t.exp_examples_label || "Ejemplos"}></div>
+  <div class="examples-grid">
+    <div class="example-card fade-up">
+      <div class="example-title" set:html={t.exp_ex1_title || "Bodega en Mallorca"}></div>
+      <p class="example-text" set:html={t.exp_ex1_text || "Cata olfativa que conecta las notas del vino con aromas de la tierra mediterránea: romero silvestre, higos maduros, sal marina y madera de encina."}></p>
+    </div>
+    <div class="example-card fade-up">
+      <div class="example-title" set:html={t.exp_ex2_title || "Retiro de yoga"}></div>
+      <p class="example-text" set:html={t.exp_ex2_text || "Secuencias aromáticas que acompañan cada momento del día: energizante al amanecer, contemplativa al mediodía, restauradora al atardecer."}></p>
+    </div>
+    <div class="example-card fade-up">
+      <div class="example-title" set:html={t.exp_ex3_title || "Team building sensorial"}></div>
+      <p class="example-text" set:html={t.exp_ex3_text || "Equipos corporativos descubren nuevas formas de comunicación y creatividad a través del lenguaje olfativo."}></p>
+    </div>
+  </div>
+</section>
+
+<div class="sub-cta fade-up">
+  <h2 set:html={t.exp_cta_headline || "¿Tienes un evento en mente?<br><em>Cuéntame.</em>"}></h2>
+  <p set:html={t.exp_cta_sub || "Todo empieza con una conversación. Cuéntame tu proyecto y lo traducimos en aroma."}></p>
+  <div class="sub-cta-btns">
+    <a href={`${prefix}/#contact`} class="btn-primary" set:html={t.exp_cta_btn1 || "Diseña tu experiencia"}></a>
+    <a href="https://wa.me/34608543705" class="btn-ghost" target="_blank" set:html={t.exp_cta_btn2 || "💬 WhatsApp"}></a>
+  </div>
+</div>
+</Layout>
+
+<style>
+.sub-hero-img{background-image:url('/images/botanica-amber.png');}
+.process{padding:90px 80px;background:var(--cream);}
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:48px;}
+.process-step{padding:44px 36px;background:var(--warm-white);position:relative;}
+.process-step::before{content:attr(data-n);font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;color:rgba(200,134,42,.08);position:absolute;top:20px;right:24px;line-height:1;}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;color:var(--dark);margin-bottom:12px;}
+.step-text{font-size:.84rem;font-weight:300;line-height:1.9;color:var(--text-muted);}
+.examples{padding:90px 80px;background:var(--dark);}
+.examples-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px;}
+.example-card{padding:36px 32px;border:1px solid rgba(255,255,255,.06);transition:border-color .3s;}
+.example-card:hover{border-color:rgba(200,134,42,.25);}
+.example-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic;color:var(--cream);margin-bottom:12px;}
+.example-text{font-size:.82rem;font-weight:300;line-height:1.9;color:rgba(245,240,232,.45);}
+.sub-cta{padding:90px 80px;background:var(--cream);text-align:center;}
+.sub-cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3.5rem);font-weight:300;color:var(--dark);margin-bottom:20px;}
+.sub-cta h2 em{font-style:italic;color:var(--amber);}
+.sub-cta p{font-size:.9rem;font-weight:300;color:var(--text-muted);line-height:1.9;max-width:500px;margin:0 auto 36px;}
+.sub-cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+@media(max-width:768px){
+  .process,.examples,.sub-cta{padding:60px 20px;}
+  .process-grid,.examples-grid{grid-template-columns:1fr;}
+}
+</style>

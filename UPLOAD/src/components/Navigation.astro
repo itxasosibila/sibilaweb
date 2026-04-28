@@ -1,20 +1,62 @@
 ---
+import { getNotionContent } from '../lib/notion.js';
+const lang = Astro.currentLocale || 'es';
+const t: any = await getNotionContent(lang);
+
+// Link prefix logic for multi-language SSG
+const prefix = lang === 'es' ? '' : `/${lang}`;
 ---
 <nav id="nav">
-  <a href="/" class="nav-logo">SIBILA</a>
+  <a href={`${prefix}/`} class="nav-logo">SIBILA</a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="/#about" data-es="Historia" data-en="Story">Historia</a></li>
+    <li><a href={`${prefix}/#about`} set:html={t.nav_history || "Historia"}></a></li>
     <li class="nav-dropdown">
-      <a href="#" data-es="Mundos ▾" data-en="Worlds ▾">Mundos ▾</a>
+      <a href="#" set:html={(t.nav_worlds || "Mundos") + " ▾"}></a>
       <ul class="nav-drop-menu">
-        <li><a href="/experiencias" data-es="Experiencias" data-en="Experiences">Experiencias</a></li>
-        <li><a href="/arte" data-es="Arte" data-en="Art">Arte</a></li>
-        <li><a href="/marca" data-es="Marca" data-en="Brand">Marca</a></li>
+        <li><a href={`${prefix}/experiencias`} set:html={t.nav_experiences || "Experiencias"}></a></li>
+        <li><a href={`${prefix}/arte`} set:html={t.nav_art || "Arte"}></a></li>
+        <li><a href={`${prefix}/marca`} set:html={t.nav_brand || "Marca"}></a></li>
       </ul>
     </li>
-    <li><a href="/proyectos" data-es="Proyectos" data-en="Projects">Proyectos</a></li>
-    <li><button class="lang-toggle" onclick="toggleLang()" id="langBtn">EN</button></li>
-    <li><a href="/#contact" class="nav-cta" data-es="Hablemos" data-en="Let's talk">Hablemos</a></li>
+    <li><a href={`${prefix}/proyectos`} set:html={t.nav_projects || "Proyectos"}></a></li>
+    
+    <li class="lang-switcher">
+      <a href="/" class={lang === 'es' ? 'active' : ''}>ES</a>
+      <a href="/cat/" class={lang === 'cat' ? 'active' : ''}>CAT</a>
+      <a href="/en/" class={lang === 'en' ? 'active' : ''}>EN</a>
+    </li>
+    
+    <li><a href={`${prefix}/#contact`} class="nav-cta" set:html={t.nav_contact || "Hablemos"}></a></li>
   </ul>
   <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </nav>
+
+<style>
+.lang-switcher {
+  display: flex !important;
+  gap: 12px;
+  align-items: center;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.lang-switcher a {
+  text-decoration: none;
+  color: var(--text);
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+.lang-switcher a:hover,
+.lang-switcher a.active {
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  .lang-switcher {
+    margin-left: 0;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+}
+</style>

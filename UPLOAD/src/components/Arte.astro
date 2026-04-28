@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getNotionContent } from '../lib/notion.js';
+
+const lang = Astro.currentLocale || 'es';
+const t: any = await getNotionContent(lang);
+
+const prefix = lang === 'es' ? '' : `/${lang}`;
+---
+
+<Layout title={t.art_meta_title || "Arte Multisensorial — Sibila"}>
+<div class="page-hero sub-hero-img fade-up">
+  <div class="page-hero-eyebrow" set:html={t.art_hero_eyebrow || "Sibila · Mundo 02"}></div>
+  <h1 set:html={t.art_hero_headline || "Cuando el arte<br><em>se respira.</em>"}></h1>
+  <p class="page-hero-sub" set:html={t.art_hero_sub || "Instalaciones olfativas que transforman conciertos, exposiciones y performances en experiencias inmersivas y memorables."}></p>
+</div>
+
+<section class="arte-projects">
+  <div class="section-label fade-up" set:html={t.art_proj_label || "Proyectos realizados"}></div>
+  <div class="arte-proj-list">
+    <div class="arte-proj-item fade-up">
+      <div class="arte-proj-num">01</div>
+      <div>
+        <div class="arte-proj-cat" set:html={t.art_proj1_cat || "Festival · Jerez de la Frontera"}></div>
+        <div class="arte-proj-title" set:html={t.art_proj1_title || "Festival de Flamenco en Jerez"}></div>
+        <p class="arte-proj-text" set:html={t.art_proj1_text || "Creación de una atmósfera olfativa para el escenario principal: tierra mojada, azahar y tabaco negro evocando el alma del sur. El público recibió tarjetas olfativas sincronizadas con la actuación."}></p>
+      </div>
+    </div>
+    <div class="arte-proj-item fade-up">
+      <div class="arte-proj-num">02</div>
+      <div>
+        <div class="arte-proj-cat" set:html={t.art_proj2_cat || "Concierto · Barcelona"}></div>
+        <div class="arte-proj-title" set:html={t.art_proj2_title || "Marco Mezquida"}></div>
+        <p class="arte-proj-text" set:html={t.art_proj2_text || "Composición aromática sincronizada con la evolución del concierto: notas frescas en la improvisación, profundidad de maderas en los momentos contemplativos. Una sinfonía que se respira."}></p>
+      </div>
+    </div>
+    <div class="arte-proj-item fade-up">
+      <div class="arte-proj-num">03</div>
+      <div>
+        <div class="arte-proj-cat" set:html={t.art_proj3_cat || "Moda · París"}></div>
+        <div class="arte-proj-title" set:html={t.art_proj3_title || "Pasarela en París"}></div>
+        <p class="arte-proj-text" set:html={t.art_proj3_text || "Cada prenda acompañada de su propia narrativa olfativa, fusionando moda y perfumería en una experiencia bidimensional: vista y olfato."}></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="arte-how">
+  <div class="section-label light fade-up" set:html={t.art_how_label || "Cómo trabajo"}></div>
+  <div class="arte-how-grid">
+    <div class="arte-how-step fade-up">
+      <div class="arte-how-title" set:html={t.art_how1_title || "Idea"}></div>
+      <p class="arte-how-text" set:html={t.art_how1_text || "Conversamos sobre tu visión artística, el mensaje y las emociones que buscas evocar."}></p>
+    </div>
+    <div class="arte-how-step fade-up">
+      <div class="arte-how-title" set:html={t.art_how2_title || "Concepto olfativo"}></div>
+      <p class="arte-how-text" set:html={t.art_how2_text || "Traduzco tu lenguaje creativo en una paleta aromática coherente con tu obra."}></p>
+    </div>
+    <div class="arte-how-step fade-up">
+      <div class="arte-how-title" set:html={t.art_how3_title || "Instalación"}></div>
+      <p class="arte-how-text" set:html={t.art_how3_text || "Integramos el componente olfativo en tu espacio, creando una atmósfera inmersiva."}></p>
+    </div>
+  </div>
+</section>
+
+<div class="sub-cta fade-up">
+  <h2 set:html={t.art_cta_headline || "¿Tienes un proyecto artístico?<br><em>Hablemos.</em>"}></h2>
+  <p set:html={t.art_cta_sub || "El aroma puede amplificar tu obra de formas que la vista y el sonido no alcanzan."}></p>
+  <div class="sub-cta-btns">
+    <a href={`${prefix}/#contact`} class="btn-primary" set:html={t.art_cta_btn1 || "Colabora conmigo"}></a>
+    <a href="https://wa.me/34608543705" class="btn-ghost" target="_blank" set:html={t.art_cta_btn2 || "💬 WhatsApp"}></a>
+  </div>
+</div>
+</Layout>
+
+<style>
+.sub-hero-img{background-image:url('/images/botanica-herbs.png');}
+.arte-projects{padding:90px 80px;background:var(--cream);}
+.arte-proj-list{display:flex;flex-direction:column;gap:2px;margin-top:48px;}
+.arte-proj-item{display:grid;grid-template-columns:1fr 2fr;gap:48px;padding:44px 0;border-bottom:1px solid rgba(200,134,42,.12);align-items:center;}
+.arte-proj-num{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;color:rgba(200,134,42,.12);}
+.arte-proj-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-style:italic;color:var(--dark);margin-bottom:10px;}
+.arte-proj-cat{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--sage);margin-bottom:10px;}
+.arte-proj-text{font-size:.86rem;font-weight:300;line-height:1.9;color:var(--text-muted);}
+.arte-how{padding:90px 80px;background:var(--dark);}
+.arte-how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:48px;}
+.arte-how-step{padding:44px 36px;border:1px solid rgba(255,255,255,.05);}
+.arte-how-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;color:var(--cream);margin-bottom:12px;}
+.arte-how-text{font-size:.82rem;font-weight:300;line-height:1.9;color:rgba(245,240,232,.42);}
+.sub-cta{padding:90px 80px;background:var(--cream);text-align:center;}
+.sub-cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3.5rem);font-weight:300;color:var(--dark);margin-bottom:20px;}
+.sub-cta h2 em{font-style:italic;color:var(--amber);}
+.sub-cta p{font-size:.9rem;font-weight:300;color:var(--text-muted);line-height:1.9;max-width:500px;margin:0 auto 36px;}
+.sub-cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+@media(max-width:768px){
+  .arte-projects,.arte-how,.sub-cta{padding:60px 20px;}
+  .arte-proj-item{grid-template-columns:1fr;}
+  .arte-how-grid{grid-template-columns:1fr;}
+}
+</style>

@@ -1,0 +1,7 @@
+# Netlify Server-Side Native Redirects
+
+# 1. Native Language detection (ZERO-JS runtime!)
+/  /cat/  302  Language=ca
+/  /en/   302  Language=en
+
+

@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getNotionContent } from '../lib/notion.js';
+
+const lang = Astro.currentLocale || 'es';
+const t: any = await getNotionContent(lang);
+
+const prefix = lang === 'es' ? '' : `/${lang}`;
+---
+
+<Layout title={t.priv_meta_title || "Privacidad — Sibila"}>
+<div class="privacy fade-up">
+  <h1 set:html={t.priv_title || "Política de Privacidad"}></h1>
+  <p set:html={t.priv_update || "Última actualización: enero 2026"}></p>
+  
+  <h2 set:html={t.priv_resp_title || "Responsable"}></h2>
+  <p set:html={t.priv_resp_text || "Sibila Studio · info@itxasosibila.es · Mallorca, España"}></p>
+  
+  <h2 set:html={t.priv_data_title || "Datos que recopilamos"}></h2>
+  <ul>
+    <li set:html={t.priv_data_1 || "Nombre y email cuando rellenas el formulario de contacto o solicitas la guía gratuita"}></li>
+    <li set:html={t.priv_data_2 || "Datos de navegación anónimos a través de Plausible Analytics (sin cookies, sin datos personales)"}></li>
+  </ul>
+  
+  <h2 set:html={t.priv_use_title || "Para qué usamos tus datos"}></h2>
+  <ul>
+    <li set:html={t.priv_use_1 || "Responder a tu consulta o enviarte la guía gratuita solicitada"}></li>
+    <li set:html={t.priv_use_2 || "Enviarte información sobre proyectos si has dado tu consentimiento"}></li>
+  </ul>
+  
+  <h2 set:html={t.priv_rights_title || "Tus derechos"}></h2>
+  <p set:html={t.priv_rights_text || "Puedes solicitar el acceso, rectificación o eliminación de tus datos en cualquier momento escribiendo a info@itxasosibila.es."}></p>
+  
+  <h2 id="cookies" set:html={t.priv_cookies_title || "Cookies"}></h2>
+  <p set:html={t.priv_cookies_text || "Esta web utiliza únicamente una cookie técnica para recordar si has aceptado este aviso. No usamos cookies de seguimiento ni publicidad."}></p>
+  
+  <h2 set:html={t.priv_contact_title || "Contacto"}></h2>
+  <p><a href="mailto:info@itxasosibila.es" set:html={t.priv_contact_text || "info@itxasosibila.es"}></a></p>
+</div>
+</Layout>
+
+<style>
+.privacy{padding:100px 80px;max-width:800px;margin:0 auto;}
+.privacy h1{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--dark);margin-bottom:32px;margin-top:var(--nav-h);}
+.privacy h2{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--dark);margin:32px 0 12px;}
+.privacy p,.privacy li{font-size:.88rem;font-weight:300;line-height:1.95;color:var(--text-muted);margin-bottom:12px;}
+.privacy ul{padding-left:20px;}
+.privacy a{color:var(--amber);}
+@media(max-width:768px){.privacy{padding:60px 20px;}}
+</style>

@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getNotionContent } from '../lib/notion.js';
+
+const lang = Astro.currentLocale || 'es';
+const t: any = await getNotionContent(lang);
+
+const prefix = lang === 'es' ? '' : `/${lang}`;
+---
+
+<Layout title={t.pro_meta_title || "Proyectos — Sibila"}>
+<div class="page-hero fade-up" style="background-image:url('/images/botanica-herbs.png');background-size:cover;background-position:center;">
+  <div class="page-hero-eyebrow" set:html={t.pro_hero_eyebrow || "Sibila · Portfolio"}></div>
+  <h1 set:html={t.pro_hero_headline || "Aromas que<br><em>permanecen.</em>"}></h1>
+  <p class="page-hero-sub" set:html={t.pro_hero_sub || "Proyectos realizados en los tres mundos — experiencias, arte y consultoría de marca."}></p>
+</div>
+
+<section class="proj-page">
+  <div class="section-label fade-up" set:html={t.pro_list_label || "Todos los proyectos"}></div>
+  <div class="proj-page-grid">
+    <div class="proj-full-card fade-up">
+      <div class="proj-full-img"><img src="/images/cristaleria.png" alt="Festival Flamenco" loading="lazy"></div>
+      <div class="proj-full-info">
+        <div class="proj-full-cat" set:html={t.pro_p1_cat || "Arte · Festival · Jerez de la Frontera"}></div>
+        <div class="proj-full-title" set:html={t.pro_p1_title || "Festival de Flamenco en Jerez"}></div>
+        <p class="proj-full-text" set:html={t.pro_p1_text || "Atmósfera olfativa para el escenario principal con tierra mojada, azahar y tabaco negro. Tarjetas olfativas sincronizadas con la actuación para 800 asistentes."}></p>
+      </div>
+    </div>
+    <div class="proj-full-card fade-up">
+      <div class="proj-full-img"><img src="/images/botanica-amber.png" alt="Marco Mezquida" loading="lazy"></div>
+      <div class="proj-full-info">
+        <div class="proj-full-cat" set:html={t.pro_p2_cat || "Arte · Concierto · Barcelona"}></div>
+        <div class="proj-full-title" set:html={t.pro_p2_title || "Marco Mezquida"}></div>
+        <p class="proj-full-text" set:html={t.pro_p2_text || "Composición aromática sincronizada con el concierto del pianista de jazz. Notas frescas en la improvisación, profundidad de maderas en los momentos contemplativos."}></p>
+      </div>
+    </div>
+    <div class="proj-full-card fade-up">
+      <div class="proj-full-img"><img src="/images/botanica-herbs.png" alt="Pasarela París" loading="lazy"></div>
+      <div class="proj-full-info">
+        <div class="proj-full-cat" set:html={t.pro_p3_cat || "Marca · Moda · París"}></div>
+        <div class="proj-full-title" set:html={t.pro_p3_title || "Pasarela en París"}></div>
+        <p class="proj-full-text" set:html={t.pro_p3_text || "Cada prenda con su propia narrativa olfativa. Lino con lavanda mediterránea, seda con jazmín oriental, lana con musgo de bosque."}></p>
+      </div>
+    </div>
+    <div class="proj-full-card fade-up">
+      <div class="proj-full-img"><img src="/images/laboratorio.png" alt="Bodega Mallorca" loading="lazy"></div>
+      <div class="proj-full-info">
+        <div class="proj-full-cat" set:html={t.pro_p4_cat || "Experiencia · Enoturismo · Mallorca"}></div>
+        <div class="proj-full-title" set:html={t.pro_p4_title || "Bodega en Mallorca"}></div>
+        <p class="proj-full-text" set:html={t.pro_p4_text || "Cata olfativa conectando las notas del vino con aromas de la tierra mediterránea: romero silvestre, higos maduros, sal marina y madera de encina."}></p>
+      </div>
+    </div>
+  </div>
+</section>
+</Layout>
+
+<style>
+.proj-page{padding:90px 80px;background:var(--cream);}
+.proj-page-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:48px;}
+.proj-full-card{overflow:hidden;background:var(--warm-white);}
+.proj-full-img{width:100%;height:260px;overflow:hidden;}
+.proj-full-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s;}
+.proj-full-card:hover .proj-full-img img{transform:scale(1.04);}
+.proj-full-info{padding:28px 32px;}
+.proj-full-cat{font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--sage);margin-bottom:8px;}
+.proj-full-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-style:italic;color:var(--dark);margin-bottom:12px;}
+.proj-full-text{font-size:.84rem;font-weight:300;line-height:1.9;color:var(--text-muted);}
+@media(max-width:768px){
+  .proj-page{padding:60px 20px;}
+  .proj-page-grid{grid-template-columns:1fr;}
+}
+</style>
