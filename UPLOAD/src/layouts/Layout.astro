@@ -1,6 +1,7 @@
 ---
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -26,6 +27,7 @@ const { title } = Astro.props;
         <Navigation />
 		<slot />
         <Footer />
+        <CookieBanner />
         <script is:inline src="/shared.js"></script>
 	</body>
 </html>
